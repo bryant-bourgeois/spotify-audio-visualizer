@@ -1,5 +1,7 @@
 import "./styles.css"
 import "process"
+import "./contentWiper"
+import {contentWiper} from "./contentWiper";
 
 const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
 const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
@@ -58,8 +60,13 @@ function authenticateToSpotify() {
 }
 
 if (!authenticatedToSpotify) {
-    authenticateToSpotify()
-    getSpotifyToken()
+    const button = document.querySelector('#login-button')
+    button.addEventListener('click', function () {
+        authenticateToSpotify()
+        getSpotifyToken()
+    })
+} else {
+    contentWiper(document.querySelector('.container'))
 }
 
 function getSpotifyToken() {
