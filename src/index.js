@@ -2,6 +2,7 @@ import "./styles.css"
 import "process"
 import {contentWiper} from "./contentWiper";
 import {authenticateToSpotify, getSpotifyToken, getProfile} from "./authentication";
+import {pageBuilder} from "./pageBuilder";
 
 let authenticatedToSpotify = localStorage.getItem('code_verifier')?.length === 128
 let accessToken
@@ -15,5 +16,6 @@ if (!authenticatedToSpotify) {
     contentWiper(document.querySelector('.container'))
     getSpotifyToken()
     accessToken = localStorage.getItem('access_token')
+    pageBuilder()
 }
 

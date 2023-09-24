@@ -15,6 +15,10 @@ body {
 
 .container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
 }
 
 #login-consent {
@@ -26,4 +30,34 @@ body {
 #login-consent > button {
     width: 3rem;
     cursor: pointer;
+}
+
+.searchContainer {
+    display: flex;
+    padding-bottom: 4rem;
+    padding-top: 2rem;
+}
+
+.searchBar {
+    width: 20vw;
+    border-radius: 15px;
+    padding-left: 1rem;
+}
+
+.visualizer {
+    background: aliceblue;
+    width: 50vw;
+    height: 50vh;
+}
+
+.controlsContainer {
+    display: flex;
+    gap: 2rem;
+    font-size: 2rem;
+}
+
+.prevTrack, .play, .nextTrack {
+    background: black;
+    border-radius: 50%;
+    padding: 1rem;
 }
