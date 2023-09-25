@@ -11,7 +11,10 @@ export function pageBuilder(targetNode) {
     searchBar.type = 'search'
     searchBar.classList.add('searchBar')
     searchBar.placeholder = 'Search for songs'
+    const searchResults = document.createElement('div')
+    searchResults.classList.add('searchResults')
     searchContainer.appendChild(searchBar)
+    searchContainer.appendChild(searchResults)
 
     //create analyzer
     const visualizer = document.createElement('div')

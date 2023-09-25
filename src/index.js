@@ -5,6 +5,9 @@ import {authenticateToSpotify, getSpotifyToken, getProfile} from "./authenticati
 import {pageBuilder} from "./pageBuilder";
 import {searchSongs} from "./search";
 
+//Grab elements
+const body = document.querySelector('body')
+
 let authenticatedToSpotify = localStorage.getItem('code_verifier')?.length === 128
 let accessToken
 
@@ -29,9 +32,15 @@ if (!authenticatedToSpotify) {
 }
 
 const searchBar = document.querySelector('.searchBar')
-searchBar.addEventListener('keypress', function (e) {
+searchBar.addEventListener('keypress', async function (e) {
     if (e.key === 'Enter' && searchBar.value.length > 0) {
-        searchSongs(accessToken, searchBar.value)
+        searchSongs(accessToken, searchBar.value, document.querySelector('.searchResults'))
+    }
+
+})
+body.addEventListener('keypress', function (e) {
+    if (e.key === 'Escape') {
+        contentWiper(document.querySelector('.searchResults'))
+        console.log('hello')
     }
 })
-
