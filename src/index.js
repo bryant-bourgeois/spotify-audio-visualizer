@@ -3,6 +3,7 @@ import "process"
 import {contentWiper} from "./contentWiper";
 import {authenticateToSpotify, getSpotifyToken, getProfile} from "./authentication";
 import {pageBuilder} from "./pageBuilder";
+import {searchSongs} from "./search";
 
 let authenticatedToSpotify = localStorage.getItem('code_verifier')?.length === 128
 let accessToken
@@ -17,5 +18,20 @@ if (!authenticatedToSpotify) {
     getSpotifyToken()
     accessToken = localStorage.getItem('access_token')
     pageBuilder()
+    setTimeout(function () {
+        fetch('https://api.spotify.com/v1/me', {
+            headers: {
+                Authorization: 'Bearer ' + accessToken
+            }
+        }).then(res => res.json())
+            .then(data => console.log(data))
+    }, 3000)
 }
+
+const searchBar = document.querySelector('.searchBar')
+searchBar.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter' && searchBar.value.length > 0) {
+        searchSongs(accessToken, searchBar.value)
+    }
+})
 
