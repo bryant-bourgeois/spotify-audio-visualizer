@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 body {
@@ -34,18 +35,71 @@ body {
 
 .searchContainer {
     display: flex;
+    flex-direction: column;
     padding-bottom: 4rem;
     padding-top: 2rem;
+    position: relative;
 }
 
 .searchBar {
     width: 20vw;
     border-radius: 15px;
     padding-left: 1rem;
+    background: #2e363b;
+    color: white;
+}
+
+.searchResults {
+    position: absolute;
+    top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 15px;
+}
+
+.track {
+    color: white;
+    background: linear-gradient(black, gray);
+    padding: .55rem;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 4rem;
+    width: 20rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: nowrap;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track:hover {
+    color: black;
+    background: linear-gradient(gray, white);
+    cursor: pointer;
+    border-color: black;
+}
+
+.trackDetails {
+    display: flex;
+    gap: .5rem;
+    margin-top: -1rem;
+    font-size: 14px;
+}
+
+.albumName {
+    font-style: italic;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .visualizer {
-    background: aliceblue;
+    background: #2e363b;
     width: 50vw;
     height: 50vh;
 }

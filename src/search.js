@@ -1,17 +1,19 @@
 import {contentWiper} from "./contentWiper";
 
 function convertFromMs(ms) {
-    const seconds = ms * 0.001
-    let minutes = 0
-    let minutesCalculated = false;
-    do {
-        if (seconds - (minutes * 60) > 0) {
-            minutes += 1
-        } else {
-            minutesCalculated = true
-        }
-    } while (!minutesCalculated)
-    return `${minutes}:${seconds % 60}`
+    const totalSeconds = ms * 0.001
+    let seconds = totalSeconds % 60
+    let minutes = (totalSeconds - seconds) / 60
+    if (seconds > 60) {
+        seconds -= 60
+        minutes += 1
+    }
+
+    function str_pad_left(string, pad, length) {
+        return (new Array(length + 1).join(pad) + string).slice(-length);
+    }
+
+    return minutes + ':' + str_pad_left(seconds, '0', 2)
 }
 
 function displaySearchResults(searchResults, targetNode) {
@@ -40,6 +42,7 @@ function displaySearchResults(searchResults, targetNode) {
 
         track.appendChild(trackName)
         track.appendChild(trackDetails)
+        track.dataset.id = searchResults[result].id
         targetNode.appendChild(track)
     }
 }
@@ -57,7 +60,7 @@ export function searchSongs(accessToken, query, targetNode) {
             'Authorization': `Bearer ${accessToken}`
         }
     }).then(res => res.json()).then(data => {
-        console.log(typeof (data.tracks.items))
+        console.log(data.tracks.items)
         return data.tracks.items
     }).then(returnData => displaySearchResults(returnData, targetNode));
 }

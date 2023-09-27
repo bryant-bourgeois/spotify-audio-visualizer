@@ -32,15 +32,19 @@ if (!authenticatedToSpotify) {
 }
 
 const searchBar = document.querySelector('.searchBar')
-searchBar.addEventListener('keypress', async function (e) {
+// searchBar.addEventListener('keypress', async function (e) {
+//     if (e.key === 'Enter' && searchBar.value.length > 0) {
+//         searchSongs(accessToken, searchBar.value, document.querySelector('.searchResults'))
+//     }
+// })
+body.addEventListener('click', function (e) {
+    contentWiper(document.querySelector('.searchResults'))
+})
+body.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' && searchBar.value.length > 0) {
         searchSongs(accessToken, searchBar.value, document.querySelector('.searchResults'))
     }
-
 })
-body.addEventListener('keypress', function (e) {
-    if (e.key === 'Escape') {
-        contentWiper(document.querySelector('.searchResults'))
-        console.log('hello')
-    }
+searchBar.addEventListener('change', function () {
+    contentWiper(document.querySelector('.searchResults'))
 })
