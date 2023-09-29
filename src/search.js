@@ -1,12 +1,13 @@
 import {contentWiper} from "./contentWiper";
 
 function convertFromMs(ms) {
-    const totalSeconds = ms * 0.001
-    let seconds = totalSeconds % 60
-    let minutes = (totalSeconds - seconds) / 60
-    if (seconds > 60) {
-        seconds -= 60
-        minutes += 1
+    let minutes = Math.floor(ms / 60000)
+    let seconds = Math.floor((ms / 1000) - (minutes * 60))
+    while (seconds >= 60) {
+        if (seconds > 60) {
+            seconds -= 60
+            minutes += 1
+        }
     }
 
     function str_pad_left(string, pad, length) {
